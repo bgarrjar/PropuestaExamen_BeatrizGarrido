@@ -1,26 +1,21 @@
-#include <stdio.h>
-#include <math.h>
+#include <iostream>
+#include <vector>
+#include <tuple>
+#include "funcion/funcion.h"
 
 int main() {
-    int max_lado = 20;  // Límite superior para los valores de los lados a y b
 
-    // Posibles valores para 'a'
-    for (int a = 1; a <= max_lado; a++) {
-        // Posibles valores para 'b', comenzando desde 'a'
-        for (int b = a; b <= max_lado; b++) {
-            double c = sqrt(a * a + b * b);  // Calculamos 'c' como raíz cuadrada de a^2 + b^2
+    TriplePitagorico pitagorico(17);
 
+    std::vector<std::tuple<int, int, int>> triples = pitagorico.encontrarTriples();
 
-            if (c == (int)c) {
-                // La suma de cualquier par de lados debe ser mayor que el tercer lado
-                if (a + b > c && a + c > b && b + c > a) {
-                    printf("Triple pitagórico: %d - %d - %d\n", a, b, (int)c);
-                }
-            }
-        }
+    for (const auto& triple : triples) {
+        std::cout << "Triple pitagorico: "
+                  << std::get<0>(triple) << " - "
+                  << std::get<1>(triple) << " - "
+                  << std::get<2>(triple) << std::endl;
     }
 
     return 0;
 }
-
 
